@@ -14,7 +14,6 @@ pub fn make_routes() -> impl Filter<Extract = impl warp::Reply> + Clone {
         .and(warp::body::content_length_limit(1024 * 16))
         .and(warp::path::end())
         .and(warp::body::json::<receipt_handler::ReceiptPayload>())
-        // .map(receipt_handler::verify);
         .map(|payload| {
             format!("{:?}", payload)
         });
